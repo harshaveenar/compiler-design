@@ -1,0 +1,22 @@
+%{
+int charCount = 0;
+int lineCount = 0;
+int wordCount = 0;
+%}
+
+%%
+.         { charCount++; }
+
+\n        { charCount++; lineCount++; }
+
+[a-zA-Z]+ { wordCount++; }
+
+%%
+
+int main() {
+    yylex();
+    printf("Character count: %d\n", charCount);
+    printf("Line count: %d\n", lineCount);
+    printf("Word count: %d\n", wordCount);
+    return 0;
+}
